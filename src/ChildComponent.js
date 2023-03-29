@@ -1,13 +1,21 @@
 import "./styles.css";
 
 function User(props) {
-    
+  const handleRemoveClick = (indexToRemove) => {
+    props.onChange(props.value.filter((item, index) => index !== indexToRemove));
+  };
+
   return (
-    <div className="card">
-      <img src={props.avatar} alt="avatar" />
-      <h2>{props.name}</h2>
-      <p>{props.email}</p>
-    </div>
+    <>
+      {props.value.map((item, index) => (
+        <div className="card" key={index}>
+          <div className="card-display">
+            <h1>{item}</h1>
+          </div>
+          <button className="rmve-btn" onClick={() => handleRemoveClick(index)}>remove</button>
+        </div>
+      ))}
+    </>
   );
 }
 
